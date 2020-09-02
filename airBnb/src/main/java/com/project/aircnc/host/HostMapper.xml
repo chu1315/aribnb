@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.aircnc.host.HostMapper">
+	<insert id="insHostSaveOne" parameterType="HostUserVO">
+		INSERT INTO host_user
+		(I_USER,COUNTRY,C_LAT,C_LNG,ADDR,S_LAT,S_LNG ,R_VASTION,
+		b_room,BED_QTY,BED_TYPE,BTH_ROOM,ROOM_TITLE 
+		,acc  ,acc_bank  ,acc_owner)
+		VALUES(#{i_user},#{country}, #{c_lat},#{c_lng},#{addr},#{s_lat},#{s_lng},#{r_vastion},
+					#{b_room},#{bed_qty},#{bed_type},#{bth_room},#{room_title},
+					#{acc},#{acc_bank},#{acc_owner});
+	</insert>
+	
+	<select id="getI_Host" parameterType="HostUserVO" resultType="Integer">
+		SELECT MAX(i_host) AS i_host
+		FROM  host_user
+		WHERE  i_user = #{i_user};
+	</select>
+	
+	<insert id="insHostSaveTwo" parameterType="BuildTypeVO">
+		INSERT INTO Build_type
+		(I_HOST,I_USER,typ,live_type)
+		VALUES(#{i_host}, #{i_user}, #{typ}, #{live_type})
+	</insert>
+	
+	<insert id="insHostSaveThree" parameterType="FaciliteVO">
+		INSERT INTO facilite
+		(I_HOST,I_USER,REQUIER,AIRCON,SAMPOO
+		,HITER,IN_HITER,WIFI,BREAKFAST,HANGER
+		,IRON,HIAR_DRY,PLACE_LATTOP,TV
+		,BABY_BAD,BABY_CHAIRS,SELF_CHECKIN,SELF_BTH_ROOM
+		,PIANO,DOOR
+		)
+		VALUES(
+			#{i_host}, #{i_user},#{requier, jdbcType=VARCHAR},#{aircon, jdbcType=VARCHAR},#{sampoo, jdbcType=VARCHAR} 
+			,#{hiter, jdbcType=VARCHAR},#{in_hiter, jdbcType=VARCHAR},#{wifi, jdbcType=VARCHAR},#{breakfast, jdbcType=VARCHAR},#{hanger, jdbcType=VARCHAR}
+			,#{iron, jdbcType=VARCHAR},#{hiar_dry, jdbcType=VARCHAR},#{place_lattop, jdbcType=VARCHAR},#{tv, jdbcType=VARCHAR} 				
+			,#{baby_bad, jdbcType=VARCHAR},#{baby_chairs, jdbcType=VARCHAR},#{self_checkin, jdbcType=VARCHAR},#{self_bth_room, jdbcType=VARCHAR}	
+			,#{piano, jdbcType=VARCHAR},#{door, jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<insert id="insHostSaveThree1" parameterType="SafePlantVO">
+		INSERT INTO safe_plant
+		(I_HOST,I_USER,FIRE_EMBLE,Carbon_ALARM,
+		MADIC_KIT,FIRE_EXTING,BAD_LOCK)
+		VALUES(
+		#{i_host},#{i_user} ,#{fire_emble, jdbcType=VARCHAR} ,#{carbon_alarm, jdbcType=VARCHAR}
+		 ,#{madic_kit, jdbcType=VARCHAR} ,#{fire_exting, jdbcType=VARCHAR} ,#{bad_lock, jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<insert id="insHostSaveFour" parameterType="GestSpaceVO">
+		INSERT INTO GEST_SPACE
+		(I_HOST,I_USER,LIVIROOM,cooking,WACHING,
+		DRYING,PAKING,GYM,SWIM_POOL,JACUZZI)
+		VALUES(
+		#{i_host},#{i_user} ,#{liviroom, jdbcType=VARCHAR} ,#{cooking, jdbcType=VARCHAR}
+		 ,#{waching, jdbcType=VARCHAR} ,#{drying, jdbcType=VARCHAR} ,#{paking, jdbcType=VARCHAR},#{gym, jdbcType=VARCHAR},#{swim_pool, jdbcType=VARCHAR}
+		 ,#{jacuzzi, jdbcType=VARCHAR}
+		
+		)
+	</insert>
+	
+	<insert id="insHostSaveFive" parameterType="SpaceInfoVO">
+		INSERT INTO SPACE_INFO
+		(I_HOST,I_USER,EXPA,Room_info,loca_info,TRAF_INFO)
+		VALUES(#{i_host}, #{i_user}, #{expa}, #{room_info}, #{loca_info}, #{traf_info})
+	</insert>
+	
+	
+	
+	
+	
+</mapper>

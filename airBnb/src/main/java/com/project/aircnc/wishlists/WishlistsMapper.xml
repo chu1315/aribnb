@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.aircnc.wishlists.WishlistsMapper">
+
+<!-- 생성된 리스트가 있는지 체크하고 보여주기. 후에 리스트를 생성하거나 선택해서 삽입 -->
+<!-- 임시로 i_user=1을 넣었다. 테스트 후에 parameterType="TUserVO"와 #{i_user}로 수정하기  -->
+<select id="selWishL" resultType="UserLListVO">
+	SELECT i_list, check_in, check_out, search_nm
+	FROM user_l_list
+	WHERE i_user = 1
+	ORDER BY r_dt DESC
+</select>
+<select id="selLinfo" parameterType="UserLListVO" resultType="UserLListVO">
+	SELECT i_list, check_in, check_out, search_nm
+	FROM user_l_list
+	WHERE i_list = #{i_list}
+</select>
+<!-- 리스트당 저장된 숙소의 수) -->
+<select id="WishLCount" parameterType="int" resultType="int">
+	SELECT count(i_host)
+	FROM user_like
+	WHERE i_list=#{i_list};
+</select>
+
+<!-- 목록만들기 버튼으로 리스트 생성 -->
+<insert id="insWishL" parameterType="UserLListVO">
+	INSERT INTO user_l_list (i_user, search_nm)
+	VALUES (#{i_user}, #{search_nm})
+</insert>
+
+
+<!-- 리스트 상세정보: 리스트 정보, 리스트에 저장된 숙소들의 i_host 가져오기 -->
+<!-- selWishL 재사용: check_in, out, search_nm이 필요하다. -->
+
+<!-- 리스트 상세정보: 리스트에 저장된 숙소들의 i_host 가져오기 -->
+<select id="selWishD" parameterType="UserLListVO" resultType="UserLikeVO">
+	SELECT i_host
+	FROM user_like
+	WHERE i_list = #{i_list};
+</select>
+<!-- 리스트 상세정보: 가져온 i_host로 개별 숙소 정보 가져오기 -->
+<select id="selHostInfo" parameterType="UserLikeVO" resultType="HostUserVO">
+	SELECT b_room, bed_qty, room_title
+	FROM host_user
+	WHERE i_host = #{i_host}
+</select>
+<select id="selHostFee" parameterType="UserLikeVO" resultType="RoomFeeVO">
+	SELECT fee
+	FROM room_fee
+	WHERE i_host = #{i_host}
+</select>
+<select id="selHostEval" parameterType="UserLikeVO" resultType="HostReviewVO">
+	SELECT count(i_contents) 'count', round(avg(evaluate_val),2) 'avg'
+	FROM host_review
+	WHERE i_host = #{i_host}
+</select>
+
+
+<!-- todo: 검색결과화면에서 리스트 지정 혹은 생성  -->
+<!-- 리스트 목록은 만들어둔 메소드 재활용 -->
+
+<!-- 선택한 리스트에 i_host 저장. 새 리스트를 생성한 후 저장할 때도 재활용 -->
+<insert id="insHost" parameterType="UserLikeVO">
+	INSERT INTO user_like (i_user, i_list, i_host)
+	VALUES (#{i_user}, #{i_list}, #{i_host})
+</insert>
+
+<!-- 검색결과화면에서 새 리스트 생성하기 -->
+<insert id="insLfromS" parameterType="UserLListVO"
+	useGeneratedKeys="true" keyProperty="i_list">
+	INSERT INTO user_l_list (search_nm, check_in, check_out, gest_qty, i_user)
+	VALUES (#{search_nm}, #{check_int}, #{check_out}, #{gest_qty}, #{i_user})
+</insert>
+
+
+
+</mapper> 

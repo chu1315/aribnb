@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.aircnc.msg.MsgMapper"> 
+
+<select id="msgList" parameterType="com.project.aircnc.msg.MsgVO"
+					resultType="com.project.aircnc.msg.MsgVO">
+	SELECT i_mlist, i_reser, i_host, ms_title, r_dt, m_dt, i_user, host_num
+	FROM aircnc_msglist
+	WHERE i_user = #{i_user} OR host_num = #{i_user}
+	ORDER BY i_mlist
+</select>
+
+<select id="msgDetailList" parameterType="com.project.aircnc.msg.DtlMsgVO"
+							resultType="com.project.aircnc.msg.DtlMsgVO">
+	SELECT i_msg, i_reser, i_host, i_user, cmt, r_dt, m_dt, state, i_mlist, host_num
+	FROM aircnc_msg	
+	WHERE i_mlist = #{i_mlist} AND (i_user = #{i_user} OR host_num = #{host_num})	
+</select>
+
+<insert id="insMsg" parameterType="com.project.aircnc.msg.DtlMsgVO">
+	INSERT INTO aircnc_msg
+	(i_host, i_user, cmt, i_mlist, host_num, i_reser)
+	VALUES
+	(#{i_host}, #{i_user}, #{cmt}, #{i_mlist}, #{host_num}, #{i_reser})
+</insert>
+
+<insert id="crtMsg" parameterType="com.project.aircnc.msg.MsgVO">
+	INSERT INTO aircnc_msglist
+	(i_reser, i_host, i_user, ms_title, host_num)
+	VALUES
+	(#{i_reser}, #{i_host}, #{i_user}, #{ms_title}, #{host_num})
+</insert>
+
+<delete id="delMsgOne">
+	SET FOREIGN_key_checks = 0;
+</delete>
+
+<delete id="delMsgTwo" parameterType="int">
+	DELETE FROM aircnc_msglist WHERE i_mlist = #{i_mlist};
+</delete>
+
+<delete id="delMsgThree" parameterType="int">
+	DELETE FROM aircnc_msg WHERE i_mlist = #{i_mlist};
+</delete>
+
+<delete id="delMsgFour">
+	SET FOREIGN_key_checks = 1;
+</delete>
+
+
+</mapper>
