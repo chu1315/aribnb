@@ -20,6 +20,8 @@
 <script type="text/javascript" src="/resources/js/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+
+
 <title>Document</title>
 </head>
 <body>
@@ -39,7 +41,7 @@
                </div>
                <div class="line">――――――――――――――――――――――――――――――――――</div>
                <div class="joinFooter">
-                  이미 에어비앤비 계정이 있나요? <span class="jToL"> 로그인</span>
+                  이미 에어비앤비 계정이 있나요? <span class="jToL" onclick="javascript:joinClose();popupLogin();"> 로그인</span>
                </div>
             </div>
 
@@ -86,36 +88,6 @@
 			</div>
 		</div>
 	</div>
-	<div id="login">
-		<div class="flex">
-			<div class="popup">
-				<div class="joinTitle">
-					<div class="joinClose" onclick="loginClose()">
-						<i class="fas fa-times"></i>
-					</div>
-					로그인
-				</div>
-				<div class="joinCore">
-					<form name="loginSubmit" action="/login" method="post">
-						<div class="joinCtnt">
-							<input type="text" name="e_mail" placeholder="이메일 주소"> <input
-								type="password" name="c_pw" placeholder="비밀번호"> <input
-								type="submit" class="mailJoin" value="로그인">
-						</div>
-					</form>
-					<div class="line">――――――――――――――――――――――――――――――――――</div>
-					<div>
-						에어비앤비 계정이 없으세요? <span class="jToL">회원 가입</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<header>
-		<div>에어비앤비의 코로나19 대응 방안에 대한 최신 정보를 확인하세요.</div>
-	</header>
-
-
 	
    <div id="login">
       <div class="flex">
@@ -136,7 +108,7 @@
                </form>
                <div class="line">――――――――――――――――――――――――――――――――――</div>
                <div>
-                  에어비앤비 계정이 없으세요? <span class="jToL">회원 가입</span>
+                  에어비앤비 계정이 없으세요? <span class="jToL" onclick="javascript:loginClose();popupJoin();">회원 가입</span>
                </div>
             </div>
          </div>
@@ -166,7 +138,10 @@
       <div id="menuctnt">
          <li class="b" onclick="popupJoin()">회원가입</li>
          <c:if test="${loginUser.i_user == null}">
-		 <li class="b" onclick="popupLogin()">로그인</li>
+		 	<li class="b" onclick="popupLogin()">로그인</li>
+		 </c:if>
+		 <c:if test="${loginUser.i_user != null}">
+		 	<a href="/logout"><li class="b">로그아웃</li></a>
 		 </c:if>
          <li class="b" onclick="goMsg()">메시지</li>
          <li class="b" onclick="goWish()">저장 목록</li>
@@ -177,7 +152,6 @@
          <li>계정</li>
          <div class="line">――――――――――――――――</div>
          <li>도움말</li>
-         <li>로그아웃</li>
       </div>
       <div id="search">
          <li class="sli"><label>위치

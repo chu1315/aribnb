@@ -225,7 +225,6 @@ header {
     position: absolute;
     top: 75px;
     right: 70px;
-    
 }
 
 #core #menuctnt li {
@@ -238,6 +237,19 @@ header {
 #core #menuctnt .line {
     color: #e5e5e5;
 }
+#core #menuctnt a:link {
+	text-decolation: none;
+}
+#core #menuctnt a:visited{
+	text-decoration: none;
+}
+#core #menuctnt a: active {
+	text-decoration: none;
+}
+#core #menuctnt a:hover {
+	text-decoration: none;
+}
+
 
 #core #search {
     display: flex;
@@ -342,3 +354,4 @@ input:focus {
 #core #search label:hover {
     cursor: pointer;
 }
+

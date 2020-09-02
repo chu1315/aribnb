@@ -7,7 +7,6 @@
 <title></title>
 </head>
 <body>
-	<div>${loginUser.nm}</div>
 	<form action="/host/hostSaveTwo" method="post">
 		<input type="hidden" name="i_user" value="${loginUser.i_user}">
 		<input type="hidden" name="i_host" value="${i_host}">

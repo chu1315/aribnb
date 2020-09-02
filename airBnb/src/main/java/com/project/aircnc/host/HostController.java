@@ -14,6 +14,7 @@ import com.project.aircnc.common.GestSpaceVO;
 import com.project.aircnc.common.HostUserVO;
 import com.project.aircnc.common.SafePlantVO;
 import com.project.aircnc.common.SpaceInfoVO;
+import com.project.aircnc.common.TUserVO;
 
 @Controller
 @RequestMapping("/host")
@@ -25,17 +26,16 @@ public class HostController {
 	@RequestMapping(value = "/hosting", method = RequestMethod.GET)
 	public String hosting (HttpSession hs, Model model) {
 		
-		return "/host/hosting";
-	}
-	// 숙소 등록 1단계
-	@RequestMapping(value = "/hostSave", method = RequestMethod.POST)
-	public String save (HttpSession hs, Model model) {
-		
-		return "host/hostSave";
+		return "/host/hostSave";
 	}
 	//2단계  숙소- 등록 1단계 - > 2단계
 	@RequestMapping(value = "/hostSaveOne", method = RequestMethod.POST)
 	public String saveOne (HostUserVO param,HttpSession hs, Model model) {
+		TUserVO loginUser = (TUserVO)hs.getAttribute("loginUser");
+		if(loginUser == null) {
+			return "/aircnc";
+		}
+		
 		int result = service.insHostSaveOne(param);
 		model.addAttribute("i_host",service.getI_Host(param));
 		return "host/hostSaveOne";

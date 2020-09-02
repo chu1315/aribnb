@@ -13,15 +13,6 @@ public class UserService {
 	private UserMapper mapper;
 	
 	public int join(TUserVO param) {
-//		String email = param.getE_mail();
-//		String bir_day = param.getBir_day();
-//		String nm = param.getNm();
-//		String pw = param.getC_pw();
-//		
-//		System.out.println(email);
-//		System.out.println(bir_day);
-//		System.out.println(nm);
-//		System.out.println(pw); 확인결과 : 잘넘어옴 회원가입 성공, 한글안되는거 어떡하지
 		
 		return mapper.join(param);
 	}
@@ -32,7 +23,7 @@ public class UserService {
 		vo = mapper.login(param);
 		
 		// result 0: 오류. 1: 로그인 성공. 2: 비밀번호 틀림 . 3: 아이디 없음
-		if (vo.getE_mail() != null) {
+		if (vo.getE_mail() != null) { 
 			String pw= param.getC_pw();
 			if(pw.equals(vo.getC_pw())) {
 				vo.setC_pw(null);
@@ -42,7 +33,7 @@ public class UserService {
 				result = 2;
 			}
 		} else {
-			result= 3;
+			result= 3; // 내가 적은 e_mail과 일치하는 이메일이 없는경우  즉,아이디 없음
 		}
 		
 		return result;

@@ -17,8 +17,6 @@
 		<input type="hidden" name="i_user" value="${loginUser.i_user}">
 		<div>
 			<input type="text" name="country" value=""  onkeydown="c_GetLatLng(this)" onchange="c_GetLatLng(this)" placeholder="국가" >
-			<input type="hidden" id="c_lat" name="c_lat" value="">
-			<input type="hidden" id="c_lng" name="c_lng" value="">
 		</div>
 		
 		<div>
@@ -50,14 +48,6 @@
         	<button type="button" 	onclick="countUp(document.getElementById('bed_qty'))">+</button>
 		</div>
 		
-		<div>
-			<p>침대 유형</p>
-			<select name="bed_type">
-				 <option value="double">더블</option>
-				 <option value="queen">퀸</option>
-				 <option value="single">싱글</option>
-			</select>
-		</div>
 		<div>
 			<p>욕실수</p>
 			<button type="button"	onclick="countDw(document.getElementById('bth_room'))">-</button>

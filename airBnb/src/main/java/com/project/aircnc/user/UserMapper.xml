@@ -17,7 +17,7 @@
 	
 	
 	<select id="login" parameterType="TUserVO" resultType="TUserVO">
-		SELECT i_user,nm,bir_day,pro_img,ph,e_mail, c_pw, salt 
+		SELECT i_user,nm,bir_day,e_mail, c_pw
 		FROM t_user
 		WHERE e_mail = #{e_mail}
 	</select>
