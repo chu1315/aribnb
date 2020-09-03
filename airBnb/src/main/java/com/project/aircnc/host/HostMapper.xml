@@ -3,10 +3,10 @@
 <mapper namespace="com.project.aircnc.host.HostMapper">
 	<insert id="insHostSaveOne" parameterType="HostUserVO">
 		INSERT INTO host_user
-		(I_USER,COUNTRY,ADDR,R_VASTION,
+		(I_USER,ADDR,R_VASTION,
 		b_room,BED_QTY,BTH_ROOM,ROOM_TITLE 
 		,acc  ,acc_bank  ,acc_owner)
-		VALUES(#{i_user},#{country},#{addr},#{r_vastion},
+		VALUES(#{i_user},#{addr},#{r_vastion},
 					#{b_room},#{bed_qty},#{bth_room},#{room_title},
 					#{acc},#{acc_bank},#{acc_owner});
 	</insert>

@@ -8,7 +8,6 @@ import com.project.aircnc.common.BuildTypeVO;
 import com.project.aircnc.common.FaciliteVO;
 import com.project.aircnc.common.GestSpaceVO;
 import com.project.aircnc.common.HostUserVO;
-import com.project.aircnc.common.MyUtils;
 import com.project.aircnc.common.SafePlantVO;
 import com.project.aircnc.common.SpaceInfoVO;
 
@@ -21,7 +20,7 @@ public class HostService {
 		return mapper.getI_Host(param);
 	}
 	public int insHostSaveOne(HostUserVO param) {
-		param.setAddr(param.getCountry()+" "+param.getAddr());
+		param.setAddr(param.getAddr()+param.getAddrDetail());
 		return mapper.insHostSaveOne(param);
 	}
 	
@@ -43,10 +42,10 @@ public class HostService {
 	
 	public int insHostSaveFive(SpaceInfoVO param) {
 		// 문자열 치환
-		param.setExpa(MyUtils.getSTRFilter(param.getExpa()));
-		param.setLoca_info(MyUtils.getSTRFilter(param.getLoca_info()));
-		param.setRoom_info(MyUtils.getSTRFilter(param.getRoom_info()));
-		param.setTraf_info(MyUtils.getSTRFilter(param.getTraf_info()));
+//		param.setExpa(MyUtils.getSTRFilter(param.getExpa()));
+//		param.setLoca_info(MyUtils.getSTRFilter(param.getLoca_info()));
+//		param.setRoom_info(MyUtils.getSTRFilter(param.getRoom_info()));
+//		param.setTraf_info(MyUtils.getSTRFilter(param.getTraf_info()));
 		
 		return mapper.insHostSaveFive(param);
 	}

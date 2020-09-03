@@ -49,6 +49,10 @@ function countDw(d) {
     }
 }
 
+function goIndex(){
+	location.href='/aircnc';
+}
+
 
 function goSearch(){
 	var addr = document.getElementById("s_addr").value;
@@ -193,7 +197,7 @@ function loginClose() {
 }
 
 function goHost(i_user){
-	location.href='/host/hosting';
+	location.href='/host/hostSave';
 }
 
 function defaultCheckE_mailValue(){

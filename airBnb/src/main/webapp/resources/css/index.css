@@ -237,17 +237,9 @@ header {
 #core #menuctnt .line {
     color: #e5e5e5;
 }
-#core #menuctnt a:link {
-	text-decolation: none;
-}
-#core #menuctnt a:visited{
+#core #menuctnt a {
 	text-decoration: none;
-}
-#core #menuctnt a: active {
-	text-decoration: none;
-}
-#core #menuctnt a:hover {
-	text-decoration: none;
+    color: black;
 }
 
 

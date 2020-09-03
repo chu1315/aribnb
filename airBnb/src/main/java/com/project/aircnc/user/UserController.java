@@ -1,8 +1,11 @@
 package com.project.aircnc.user;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +24,29 @@ public class UserController {
 	private UserService service;
 	
 	@RequestMapping(value="/login", method= RequestMethod.POST)
-	public String login (Model model, TUserVO param ,HttpSession hs) {
+	public String login (Model model, TUserVO param ,HttpSession hs, HttpServletResponse response) {
 		int result = service.login(param,hs);
 		
 		if (result ==1) {
 			return "redirect:/aircnc";
 		} else {
-			model.addAttribute("msg", "아이디 혹은 비밀번호를 확인해주세요.");
+//			model.addAttribute("msg", "아이디 혹은 비밀번호를 확인해주세요.");
+			response.setContentType("text/html; charset=UTF-8");
+			 
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+
+				out.println("<script>alert('아이디 혹은 비밀번호를 확인해주세요.');</script>");
+				 
+				out.flush();
+				return "/index";
+			} catch (IOException e) {
+//				e.printStackTrace();
+				System.out.println("/login() 오류 : "+e);
+			}
+			 
+
 			return "redirect:/aircnc";
 		}
 		

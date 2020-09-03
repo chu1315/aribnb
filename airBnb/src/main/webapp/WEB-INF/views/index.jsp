@@ -116,7 +116,7 @@
    </div>
 
 
-   <nav id="core">
+<nav id="core">
       <div>
          <img id="logo" src="/resources/img/mainlogo.png">
       </div>
@@ -136,7 +136,9 @@
       </div>
       
       <div id="menuctnt">
-         <li class="b" onclick="popupJoin()">회원가입</li>
+      	 <c:if test="${loginUser == null }">
+         	<li class="b" onclick="popupJoin()">회원가입</li>
+         </c:if>
          <c:if test="${loginUser.i_user == null}">
 		 	<li class="b" onclick="popupLogin()">로그인</li>
 		 </c:if>
@@ -158,7 +160,6 @@
                <div>
                   <input id="s_addr" class="searchin" type="text" onkeyup="goAddr()"
                      placeholder="어디로 여행가세요?">
-                  <div>검색어</div>
                </div>
          </label></li>
          <li class="sli"><label>체크인

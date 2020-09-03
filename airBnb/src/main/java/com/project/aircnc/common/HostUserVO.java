@@ -7,8 +7,8 @@ public class HostUserVO {
 	
 	private int i_host;
 	private int i_user;
-	private String country;
 	private String addr;
+	private String addrDetail;
 	private int r_vastion;
 	private int b_room;
 	private int bed_qty;
@@ -19,6 +19,14 @@ public class HostUserVO {
 	private String acc_owner;
 	private String r_dt;
 	
+	
+	
+	public String getAddrDetail() {
+		return addrDetail;
+	}
+	public void setAddrDetail(String addDetail) {
+		this.addrDetail = addDetail;
+	}
 	public int getI_host() {
 		return i_host;
 	}
@@ -30,12 +38,6 @@ public class HostUserVO {
 	}
 	public void setI_user(int i_user) {
 		this.i_user = i_user;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
 	}
 	public String getAddr() {
 		return addr;
