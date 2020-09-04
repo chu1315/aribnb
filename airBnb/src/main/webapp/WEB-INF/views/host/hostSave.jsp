@@ -21,7 +21,7 @@
  }
  
  </style>
-<title></title>
+<title>에어비앤비 호스트가 되세요</title>
 </head>
 <body>
 <container id="container">
@@ -62,49 +62,10 @@
 	<div id="containerOne">
 		<h2>${loginUser.nm} 님 안녕하세요!<br> 숙소 등록을 시작해볼까요?</h2>
 		<br>
-		<div><h3>등록하시려는 숙소의 유형과 사진을 선택하세요.</h3></div><br>
+		<div><h3>등록하시려는 숙소의 유형과 사진을 선택하세요.</h3></div>
 		
-		<div class="dropzone dz-clickable" id="myDrop" >
-		    <div class="dz-default dz-message" data-dz-message="">
-		        <span><h4>사진을 드래그해주시거나 선택해주세요</h4></span>
-		    </div>
-		</div>
-		
-		<script>
-			Dropzone.autoDiscover = false;
-			Dropzone.options.myAwesomeDropzone = false;
-			
-			var Dropzone = new Dropzone("div#myDrop", { url: "/upload"});
-			
-			Dropzone.options.myAwesomeDropzone = {
-				paramName: "file", 
-				maxFilesize: 20, 
-				type:"POST",
-				accept: function(file, done) {
-					if (file.name == "") { // ?
-						console.log(file)
-						done();				
-					}
-					else { done(); }
-						console.log(file)
-					}
-			};		
-		
-		
-		
-		</script>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
 		<br>
-		<form action="/host/hostSave" method="post">
+		<form action="/host/hostSave" method="post" onsubmit="goHST()">
 			<input type="hidden" name="i_user" value="${loginUser.i_user}">
 		
 			<input type="button" onClick="openDaumZipAddress();" value = "주소 찾기" />
@@ -118,16 +79,16 @@
 			
 			<div>
 				<select name="r_vastion">
-				<c:forEach var="i" begin="1" end="16">
-					 <option value="${i}" >최대 ${i}명 숙박 가능</option>
-				</c:forEach>
+					<c:forEach var="i" begin="1" end="16">
+						 <option value="${i}" >최대 ${i}명 숙박 가능</option>
+					</c:forEach>
 				</select>
 			</div>
 			<div>
 				<select name="b_room">
-				<c:forEach var="i" begin="1" end="50">
-					 <option value="${i}" >객실 ${i}개</option>
-				</c:forEach>
+					<c:forEach var="i" begin="1" end="50">
+						 <option value="${i}" >객실 ${i}개</option>
+					</c:forEach>
 				</select>
 			</div>
 			
@@ -144,7 +105,6 @@
 				<button type="button"	onclick="countDw(document.getElementById('bth_room'))">-</button>
 	     			<input class="chooseNum"	id="bth_room" 	name="bth_room"		type="number"	size="10"	value="1" >
 	        	<button type="button" 	onclick="countUp(document.getElementById('bth_room'))">+</button>
-				
 			</div>
 			
 			<div>
@@ -164,11 +124,9 @@
 				<p>예금주</p>
 				<input type="text" name="acc_owner" value="${loginUser.nm}" placeholder="예금주">
 			</div>
-			<div>
 			<br>
-			<br>
-			</div>			
-			<input type="submit" value="완료" onsubmit="goIdx()">
+			<br>		
+				<input type="submit" value="다음">
 		</form>
 		
 	</div>
@@ -177,6 +135,7 @@
 		<img src="/resources/img/mustBeHost.png">
 	</div>
 </div>
+
 </body>
 
 <script>
@@ -191,9 +150,6 @@ function openDaumZipAddress() {
 	}).open();
 }
 
-function goIdx(){
-	location.href='/aircnc';
-}
 
 
 function goHost(i_user){
@@ -207,6 +163,10 @@ function goMsg() {
 //메뉴-저장 목록으로 이동
 function goWish() {
 	location.href = '/wishlists';
+}
+
+function goHST(){
+	location.href='/host/hostSaveTwo';
 }
 
 
@@ -232,63 +192,7 @@ function myMenu() {
 	        d.value = 1;
 	    }
 	}
-	var addr;
 	
-	function s_GetLatLng(obj){
-		console.log(obj.value);
-		
-		addr =obj.value; 
-		
-		const geocoder = new google.maps.Geocoder();
-
-    	const address = addr;
-    	geocoder.geocode(
-    	  {
-    	    address: address
-    	  },
-    	  (results, status) => {
-    	    if (status === "OK") {
-    	    	var Latitude = results[0].geometry.location.lat(); // 위도 
-    	    	var longitude = results[0].geometry.location.lng();// 경도 
-    	    	
-    	    	// hidden 테그에 삽입 (위도 경도)
-    	    	s_lat.value = Latitude; 
-    	    	s_lng.value = longitude;
-    	    	
-    	    } else {
-    	      
-    	    }
-    	  }
-    	);
-	}
-	
-	function c_GetLatLng(obj){
-		
-		addr =obj.value; 
-		
-		const geocoder = new google.maps.Geocoder();
-
-    	const address = addr;
-    	geocoder.geocode(
-    	  {
-    	    address: address
-    	  },
-    	  (results, status) => {
-    	    if (status === "OK") {
-    	    	var Latitude = results[0].geometry.location.lat(); // 위도 
-    	    	var longitude = results[0].geometry.location.lng();// 경도 
-    	    	
-    	    	// hidden 테그에 삽입 (위도 경도)
-    	    	c_lat.value = Latitude; 
-    	    	c_lng.value = longitude;
-    	    	
-    	    } else {
-    	      
-    	    }
-    	  }
-    	);
-		
-	}
 
 </script>
 </html>
