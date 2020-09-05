@@ -158,8 +158,7 @@
       <div id="search">
          <li class="sli"><label>위치
                <div>
-                  <input id="s_addr" class="searchin" type="text" onkeyup="goAddr()"
-                     placeholder="어디로 여행가세요?">
+                  <input id="s_addr" class="searchin" type="text" onkeyup="goAddr()" placeholder="어디로 여행가세요?" />
                </div>
          </label></li>
          <li class="sli"><label>체크인
@@ -181,11 +180,12 @@
                   <button onclick="countUp(document.getElementById('dd'))">+</button>
                </div>
          </label></li>
-         <li id="sbutton" onclick="goSearch()"><i class="fas fa-search"></i>
-         </li>
+         	<li id="sbutton" onclick="goSearch()"><i class="fas fa-search"></i></li>
     </div>
 </nav>
 </container>
+<script>
+</script>
 
 </body>
 </html>

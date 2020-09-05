@@ -56,10 +56,13 @@ function goIndex(){
 
 function goSearch(){
 	var addr = document.getElementById("s_addr").value;
-	var chin = document.getElementById("searchin").value;
-	var chout = document.getElementById("searchout").value;
-	var qty = document.getElementById('dd').value;
-	location.href = "/search/searchMain?addr="+addr+"&chin="+chin+"&chout="+chout+"&qty="+qty;
+	
+	if(addr.length == 0) {
+		alert('여행지를 설정해주시기 바랍니다.');
+	}else{
+		document.location = "/search/searchMain?addr="+addr;
+	}
+	
 }
 
 // dropDown 메뉴 함수 
@@ -71,6 +74,8 @@ function myMenu() {
 		document.getElementById("menuctnt").style.display='block';
 	}
 }
+
+
 
 // 주소 검색 
 function goAddr(){
@@ -89,6 +94,8 @@ function goAddr(){
   })
 
 }
+
+
 // 메뉴-저장 목록으로 이동
 function goWish() {
 	location.href = '/wishlists';
@@ -205,45 +212,7 @@ function defaultCheckE_mailValue(){
 		duplicationIdMsg.innerHTML = '';
 	}
 		
-/*function chkE_mail() {
-	var e_mail = joinForm.e_mail.value
-	console.log(e_mail)
-	if(e_mail.length == 0) {
-		alert('이메일을 입력해주세요')
-		return false
-	}
-			
-		axios.get('/checkE_mail', {
-			   params: {
-		      e_mail: e_mail
-			    }
-		  }).then(function(response) { 
-			  
-			checkE_mail.value = response.data.result
-			
-			console.log(response.data.result)
-			
-			var msg =''
-		    switch(response.data.result){
-				
-		    	case 1:
-		    		msg = '이미 사용 중 입니다.'
-		    		break;
-		   		 case 0:
-		    		msg ='이메일을 사용할 수 있습니다.'
-		    		break;
-				default:
-					msg ='중복체크를 해주세요'
-					break;
-		    	}
-			duplicationE_mailMsg.innerHTML=msg
-			
-		  }).catch(function (error) {
-		    console.log(error);
-		  })
-		return false
-		}
-*/
+
 function chk(){
 	if(joinForm.e_mail.value.length == 0) {
 		alert('이메일을 입력해주세요');

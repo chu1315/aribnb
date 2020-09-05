@@ -12,39 +12,33 @@
 <title>에어비앤비 호스트가 되세요</title>
 </head>
 <body>
-	<container id="container">
-		<header>
-			<div>
-				<a href="/aircnc"><img id="logo" src="/resources/img/pinklogo.png"></a>
-			</div>
-	        <div id="menubutton" onclick="myMenu()">
-	            <div><img id="ham" src="/resources/img/bars-solid.svg"></div>
-	            <div id="profile">
-	                <img src="/resources/img/pimg.jpg">
-	            </div>
-	        </div>
-	        <div id="menuctnt">
-	      	 <c:if test="${loginUser == null }">
-	         	<li class="b" onclick="popupJoin()">회원가입</li>
-	         </c:if>
-	         <c:if test="${loginUser.i_user == null}">
-			 	<li class="b" onclick="popupLogin()">로그인</li>
-			 </c:if>
-			 <c:if test="${loginUser.i_user != null}">
-			 	<a href="/logout"><li class="b">로그아웃</li></a>
-			 </c:if>
-	         <li class="b" onclick="goMsg()">메시지</li>
-	         <li class="b" onclick="goWish()">저장 목록</li>
-	         <div class="line">――――――――――――――――</div>
-	         <c:if test="${loginUser.i_user != null}">
-	         <li class="b" onclick="goHost()">숙소 호스트 등록</li>
-	         </c:if>
-	         <li>계정</li>
-	         <div class="line">――――――――――――――――</div>
-	         <li>도움말</li>
-	      </div>
-		</header>
-	</container>
+<container id="container">
+	<header>
+		<div>
+			<a href="/aircnc"><img id="logo" src="/resources/img/pinklogo.png"></a>
+		</div>
+        <div id="menubutton" onclick="myMenu()">
+            <div><img id="ham" src="/resources/img/bars-solid.svg"></div>
+            <div id="profile">
+                <img src="/resources/img/pimg.jpg">
+            </div>
+        </div>
+        <div id="menuctnt">
+		 <c:if test="${loginUser.i_user != null}">
+		 	<a href="/logout"><li class="b">로그아웃</li></a>
+		 </c:if>
+         <li class="b" onclick="goMsg()">메시지</li>
+         <li class="b" onclick="goWish()">저장 목록</li>
+         <div class="line">――――――――――――――――</div>
+         <c:if test="${loginUser.i_user != null}">
+         <li class="b" onclick="goHost()">숙소 호스트 등록</li>
+         </c:if>
+         <li>계정</li>
+         <div class="line">――――――――――――――――</div>
+         <li>도움말</li>
+      </div>
+	</header>
+</container>
 
 <div id="container2">
 	<div id="containerOne">
@@ -72,8 +66,8 @@
 		
 		<div class="dropzone dz-clickable" id="myDrop" action="./upload">
 		    <div class="dz-default dz-message" data-dz-message="">
-		    	<input type="hidden2" name="i_host" value="${i_host}">
-				<input type="hidden2" name="i_user" value="${loginUser.i_user}">
+		    	<input type="hidden" name="i_host" value="${i_host}">
+				<input type="hidden" name="i_user" value="${loginUser.i_user}">
 		        <span><h4>사진을 드래그해주시거나 선택해주세요</h4></span>
 		    </div>
 		</div>
@@ -219,6 +213,34 @@
 		<img src="/resources/img/mustBeHost.png">
 	</div>
 </div>
+<script>
+function goHost(i_user){
+	location.href='/host/hostSave';
+}
 
+//메시지 화면 이동
+function goMsg() {
+	location.href = '/aircnc/message';
+}
+//메뉴-저장 목록으로 이동
+function goWish() {
+	location.href = '/wishlists';
+}
+
+function goHST(){
+	location.href='/host/hostSaveTwo';
+}
+
+
+//dropDown 메뉴 함수 
+function myMenu() {
+	display = document.getElementById("menuctnt").style.display;
+	if(display == 'block'){
+		document.getElementById("menuctnt").style.display='none';
+	}else{
+		document.getElementById("menuctnt").style.display='block';
+	}
+}
+</script>
 </body>
 </html>
