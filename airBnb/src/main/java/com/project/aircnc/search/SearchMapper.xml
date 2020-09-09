@@ -4,11 +4,29 @@
 	
 	
 	<select id="searchListTwo" parameterType="String" resultType="HostUserVO">
-		SELECT room_title, r_dt
-		FROM host_user
-		WHERE addr like '%${addr}%'
-
+		SELECT a.i_user, a.i_host, a.room_title, DATE_FORMAT(a.r_dt, '%y-%m-%d %H:%i') as r_dt, b.pic_nm, a.ADDR
+		FROM host_user a INNER JOIN thum_pic b
+		ON a.i_host = b.i_host
+		WHERE addr LIKE '%${addr}%'
 	</select>
 	
+	<select id="detail" parameterType="int" resultType="HostUserVO">
+		SELECT i_user, addr, r_vastion, b_room, bed_qty,
+		bth_room, room_title, acc, acc_bank, acc_owner, r_dt 
+		FROM host_user
+		WHERE i_host = #{i_host}
+	</select>
+	
+	<select id="writer" parameterType="int" resultType="TUserVO">
+		SELECT nm, e_mail
+		FROM t_user
+		WHERE i_user = #{i_user}
+	</select>
+	
+	<select id="hostPic" parameterType="int" resultType="HostPicVO">
+		SELECT pic_nm
+		FROM host_pic
+		WHERE i_host = #{i_host}
+	</select>
 	
 </mapper>

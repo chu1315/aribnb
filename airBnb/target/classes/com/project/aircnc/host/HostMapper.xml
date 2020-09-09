@@ -27,7 +27,13 @@
 	
 	</insert>
 	
+	<insert id="thumUpload" parameterType="HostPicVO">
+		INSERT INTO thum_pic
+		(i_user, i_host, pic_nm)
+		VALUES
+		(#{i_user}, #{i_host}, #{pic_nm})
 	
+	</insert>
 	
 	
 	

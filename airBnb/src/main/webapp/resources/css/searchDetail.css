@@ -71,22 +71,11 @@ header #menuctnt .line {
     color: black;
 }
 
-.containerPa {
-	display:flex;
-	flex-grow:1;
+#detailContainer{
+	padding:60px;
 }
 
-.containerTwo {
-	display : flex;
-	padding : 40px;
-	flex-grow:1;
+#picContainer > #srcImg{
+	width:400px;
+	height:400px;
 }
-
-#hoverSelected:hover {
-		background-color: #ecf0f1;
-		cursor: pointer;
-}
-
-
-
-

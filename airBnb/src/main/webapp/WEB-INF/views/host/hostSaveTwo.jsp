@@ -51,19 +51,27 @@
 					그 점에 주의하시고 올려주세요</h5>
 			</div>
 			<br>
-		<%-- <form action="/upload" class="dropzone" method="post">
-			<input type="hidden" name="i_host" value="${i_host}">
-			<input type="hidden" name="i_user" value="${loginUser.i_user}">
-			<div class="fallback">
-				<input name="file" type="file" multiple />
-			</div>
-		</form>
-		<br><br><br>
-		<form>
-			<input type="button" value="등록하기">
-		</form> --%>
+		<!-- 리스트에 뿌려질 썸네일 이미지 -->
+		<div class="dropzone dz-clickable" id="myDropTwo" action="./thumUpload">
+		    <div class="dz-default dz-message" data-dz-message="">
+		    	<input type="hidden" name="i_host" value="${i_host}">
+				<input type="hidden" name="i_user" value="${loginUser.i_user}">
+		        <span><h4>리스트에 보여질 썸네일 이미지를 선택해주세요.</h4></span>
+		    </div>
+		</div>
 		
+		<script>
+			$(document).on(function(){
+				var Dropzone = $('div#myDropTwo').Dropzone({
+				});
+				Dropzone.autoDiscover = false;
+				Dropzone.options.myAwesomeDropzone = false;
+			});
+		</script>
+			
+			
 		
+		<!-- 상세보기에 뿌려질 리스트 사진들 -->
 		<div class="dropzone dz-clickable" id="myDrop" action="./upload">
 		    <div class="dz-default dz-message" data-dz-message="">
 		    	<input type="hidden" name="i_host" value="${i_host}">

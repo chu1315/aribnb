@@ -2,7 +2,7 @@ package com.project.aircnc.common;
 
 import org.apache.ibatis.type.Alias;
 @Alias("SearchVO")
-public class SearchVO  extends FaciliteVO{
+public class SearchVO {
 	private String  addr; // 주소
 	private String  chin;
 	private String  chout;

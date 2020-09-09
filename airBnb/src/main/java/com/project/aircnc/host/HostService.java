@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.aircnc.common.BuildTypeVO;
-import com.project.aircnc.common.FaciliteVO;
 import com.project.aircnc.common.GestSpaceVO;
 import com.project.aircnc.common.HostPicVO;
 import com.project.aircnc.common.HostUserVO;
@@ -37,24 +35,27 @@ public class HostService {
 		TUserVO loginUser = (TUserVO)hs.getAttribute("loginUser");		
 				
 		
-		String realPath = hs.getServletContext().getRealPath("/"); //루트 절대경로 가져오기
-		String imgFolder = realPath + "/resources/img/host/" + i_host;
-		
+//		String realPath = hs.getServletContext().getRealPath("/"); //루트 절대경로 가져오기
+//		String imgFolder = realPath + "/resources/img/host/" + i_host;
+		String imgFolder = "C:/Users/현욱/git/aribnb/airBnb/src/main/webapp/resources/img/host/"+i_host;
 		String pic_nm = MyUtils.saveFile(imgFolder, file);
-
-//		HostPicVO param = new HostPicVO();
-//		param.setI_user(loginUser.getI_user());
-//		System.out.println("upload Service loginUser i_user : " + loginUser.getI_user());
-//		param.setI_host(i_host);
-//		System.out.println("upload Servicei_host : " + i_host);
 		
 		int i_user = loginUser.getI_user();
-		System.out.println("service upload i_user : " + i_user);
-		System.out.println("service upload i_host : " + i_host);
-		System.out.println("service upload pic_nm : " + pic_nm);
 
 		mapper.upload(i_user, i_host, pic_nm);
 	}
+	
+	public void thumUpload(MultipartFile file, HttpSession hs, int i_user, int i_host) {
+		
+//		String realPath = hs.getServletContext().getRealPath("/"); //루트 절대경로 가져오기 web-app까지의 경로
+//		String imgFolder = realPath + "/resources/img/thum/";
+		String imgFolder = "C:/Users/현욱/git/aribnb/airBnb/src/main/webapp/resources/img/thum/";
+		String pic_nm = MyUtils.saveFile(imgFolder, file);
+		
+
+		mapper.thumUpload(i_user, i_host, pic_nm);
+	}
+	
 	
 	
 }

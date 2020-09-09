@@ -4,7 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("HostUserVO")
 public class HostUserVO {
-	
+	private String pic_nm; // 이미지 불러오려고 임의로 만듦
 	private int i_host;
 	private int i_user;
 	private String addr;
@@ -20,7 +20,12 @@ public class HostUserVO {
 	private String r_dt;
 	
 	
-	
+	public String getPic_nm() {
+		return pic_nm;
+	}
+	public void setPic_nm(String pic_nm) {
+		this.pic_nm = pic_nm;
+	}
 	public String getAddrDetail() {
 		return addrDetail;
 	}

@@ -64,6 +64,9 @@
 		<br>
 		<div><h3>등록하시려는 숙소의 유형과 사진을 선택하세요.</h3></div>
 		
+		
+		
+		
 		<br>
 		<form action="/host/hostSave" method="post" onsubmit="goHST()">
 			<input type="hidden" name="i_user" value="${loginUser.i_user}">

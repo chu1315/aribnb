@@ -29,7 +29,10 @@ html, body{
     height: 100%;
     background-color: white;
 }
-
+#srcImg {
+width : 260px;
+height:170px;
+}
 
 </style>
 
@@ -73,14 +76,12 @@ html, body{
 	<div class="containerPa">
 		<div class="containerTwo">
 			<table>
-				<tr>
-					<th>타이틀</th>
-					<th>작성일자</th>
-				</tr>
 				<c:forEach var="item" items="${data}">
-					<tr>
-						<td>${item.room_title}</td>
-						<td>${item.r_dt}</td>
+					<tr id="hoverSelected" onclick="moveToDetail(${item.i_host}, ${item.i_user})">
+						<td><input type="hidden" value="${item.i_host}"></td>
+						<td><img id="srcImg" src='/resources/img/thum/${item.pic_nm}'></td>
+						<td id="tds">${item.room_title}</td>
+						<td id="tds">${item.r_dt}</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -93,6 +94,9 @@ html, body{
 	
 </body>
 <script>
+function moveToDetail(i_host,i_user) {
+	location.href='/search/searchDetail?i_host='+i_host+'&i_user='+i_user;
+}
 
 
 function goHost(i_user){

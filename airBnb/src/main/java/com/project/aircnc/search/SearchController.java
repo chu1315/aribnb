@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.aircnc.common.TUserVO;
+
 @Controller
 public class SearchController {
 
 	@Autowired
-	private SearchSearvice service;
+	private SearchSevice service;
 
 	// 검색창 자동 완성 메소드 구현중
 	
@@ -33,50 +35,33 @@ public class SearchController {
 	
 	@RequestMapping(value = "/search/searchMain", method = RequestMethod.GET)
 	public String goSearchMain(@RequestParam("addr") String addr, HttpSession hs,
-			HttpServletResponse response) {
+			HttpServletResponse response, Model model) {
 		
-//		response.setCharacterEncoding("UTF-8");
 		System.out.println("addr : " + addr);
 		hs.setAttribute("data", service.searchList(addr));
 		
 		return "search/searchMain";
 	}
 	
-	@RequestMapping(value="/searchMain", method=RequestMethod.GET)
-	public String gosearchmain() {
-		return "searchMain";
+	@RequestMapping(value="/search/searchDetail", method=RequestMethod.GET)
+	public String searchDetail(int i_host, int i_user, HttpSession hs) {
+		TUserVO loginUser = (TUserVO)hs.getAttribute("loginUser");
+		
+		System.out.println("Detail i_host : " + i_host); // i_host를 이용해서 host_user에 있는 정보를 불러올것
+		// 그리고 i_host를 이용해서 host_pic에서도 사진을 다 불러올 것
+		System.out.println("Detail i_user : " + i_user); //글쓴이 이름 가져올 것
+		
+		TUserVO uvo = service.writer(i_user);
+		uvo.getE_mail();
+		uvo.getNm();
+		
+		hs.setAttribute("detailData", service.detail(i_host)); // host_user테이블에 있는 정보 다 불러옴.
+		hs.setAttribute("writer", service.writer(i_user)); // t_user 테이블의 nm과 e_mail 가져온다
+		hs.setAttribute("hostPic", service.hostPic(i_host)); // host_pic 테이블의 사진을 다 불러올 것
+		hs.setAttribute("i_host", i_host);
+		return "search/searchDetail";
 	}
+	
 
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value="/getSearchList", method=RequestMethod.GET) public
-	 * Map<String, Object> getSearchList(@RequestParam("addr")String addr, Model
-	 * model ,HttpSession hs, HttpServletResponse response) { Map<String, Object>
-	 * map = new HashMap();
-	 * 
-	 * 
-	 * return map; }
-	 */
-
-//	@RequestMapping(value = "/search/map", method = RequestMethod.GET)
-//	public String goSearchMap( SearchVO param, Model model ,HttpSession hs) 
-//	{
-//		// 세션의 i_user 로그인 유저 정보 
-//		TUserVO vo = (TUserVO)hs.getAttribute("loginUser");
-//		param.setI_user(vo.getI_user());
-//		
-//		// 날짜 데이터 형변환시 예외처리가 필요 
-//		try {
-//			model.addAttribute("data",service.hostList(param));
-//			model.addAttribute("sData", param);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		} catch (java.text.ParseException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return "search/map";
-//	}
 
 }

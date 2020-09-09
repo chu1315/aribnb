@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.aircnc.common.HostReviewVO;
 import com.project.aircnc.common.HostUserVO;
-import com.project.aircnc.common.RoomFeeVO;
 import com.project.aircnc.common.UserLListVO;
 import com.project.aircnc.common.UserLikeVO;
 import com.project.aircnc.common.WishlistsVO;
@@ -48,15 +46,10 @@ public class WishlistsService {
 			WishlistsVO temp = new WishlistsVO();
 			
 			HostUserVO hinfo = mapper.selHostInfo(vo);
-			RoomFeeVO hfee = mapper.selHostFee(vo);
-			HostReviewVO heval = mapper.selHostEval(vo);
 			
 			temp.setB_room(hinfo.getB_room());
 			temp.setBed_qty(hinfo.getBed_qty());
 			temp.setRoom_title(hinfo.getRoom_title());
-			temp.setFee(hfee.getFee());
-			temp.setCount(heval.getCount());
-			temp.setAvg(heval.getAvg());
 			
 			result.add(temp);
 		}	

@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.aircnc.common.BuildTypeVO;
-import com.project.aircnc.common.FaciliteVO;
 import com.project.aircnc.common.GestSpaceVO;
 import com.project.aircnc.common.HostUserVO;
 import com.project.aircnc.common.SafePlantVO;
@@ -118,5 +116,25 @@ public class HostController {
 		
 		return "/index";
 	}
+	
+	@RequestMapping(value = "/thumUpload", method = RequestMethod.POST)
+	public String thumImg(@RequestParam("file") MultipartFile file, HttpSession hs, Model model) {
+		System.out.println("/thumUpload 들어옴");
+		
+		TUserVO loginUser = (TUserVO)hs.getAttribute("loginUser");
+		int i_user = loginUser.getI_user();
+		int i_host = (Integer) hs.getAttribute("i_host");
+		
+		System.out.println("thumImg i_user : " + i_user);
+		
+		if(!file.isEmpty()) {
+			service.thumUpload(file, hs, i_user, i_host);
+			
+			return "/index";
+		}
+		
+		return "/index";
+	}
+	
 	
 }

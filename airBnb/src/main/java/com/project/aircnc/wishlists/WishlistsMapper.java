@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.project.aircnc.common.HostReviewVO;
 import com.project.aircnc.common.HostUserVO;
-import com.project.aircnc.common.RoomFeeVO;
 import com.project.aircnc.common.UserLListVO;
 import com.project.aircnc.common.UserLikeVO;
 
@@ -19,8 +17,6 @@ public interface WishlistsMapper {
 	
 	public List<UserLikeVO> selWishD (UserLListVO param);
 	public HostUserVO selHostInfo(UserLikeVO param);
-	public RoomFeeVO selHostFee (UserLikeVO param);
-	public HostReviewVO selHostEval (UserLikeVO param);
 
 	public void insHost(UserLikeVO param);
 	public void insLfromS(UserLListVO param);
