@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="com.project.aircnc.common.TUserVO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,6 +60,13 @@
 		<h4>입금 계좌 : ${detailData.acc_bank }</h4>
 		<h4>계좌 번호 : ${detailData.acc }</h4>
 		<h4>예금주 : ${detailData.acc_owner }</h4>
+		
+		<form action="/wish" method="post" onclick="alt()">
+			<input type="hidden" value="${i_host}">
+			<input type="hidden" value="${detailData.i_user}">
+			<button type="submit">저장목록에 저장하기</button>
+		</form>
+		
 	</div>
 	<hr>
 	<div id="msgContainer">
@@ -75,6 +83,19 @@
 </div>	
 	
 <script>
+var userVO ;
+function alt() {
+	<% 
+	TUserVO uservo = (TUserVO)session.getAttribute("loginUser");
+	
+	%>
+	
+	userVO = <%=uservo.getI_user() %>;
+	if(userVO != 0) {
+		alert('저장되었습니다.');
+	}
+}
+
 function crtMsg(i_host, room_title, i_user) {
 	/*i_user -> 글쓴이 유저번호, i_host -> 등록된 건물 PK, room_title -> 방 제목으로 만들거임  */
 	location.href='/aircnc/crtMsg?i_host='+i_host+'&room_title='+room_title+'&i_user='+i_user;
@@ -90,7 +111,7 @@ function goMsg() {
 }
 //메뉴-저장 목록으로 이동
 function goWish() {
-	location.href = '/wishlists';
+	location.href = '/wish';
 }
 
 function goHST(){

@@ -99,7 +99,7 @@ function goAddr(){
 
 // 메뉴-저장 목록으로 이동
 function goWish() {
-	location.href = '/wishlists';
+	location.href = '/wish';
 }
 
 // 메시지 화면 이동

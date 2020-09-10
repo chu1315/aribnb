@@ -72,7 +72,7 @@ public class MsgController {
 		}
 		
 		
-		param.setI_user(loginUser.getI_user()); // 임시용(hs에 들어가있는 로그인유저의 i_user를 받아넣을것이다)
+		param.setI_user(loginUser.getI_user());
 		
 		hs.setAttribute("msgList", service.msgList(param));
 		
@@ -81,7 +81,13 @@ public class MsgController {
 	
 	@RequestMapping(value="/mdetail", method=RequestMethod.GET)
 	public String mdetail(HttpSession hs, MsgVO param, DtlMsgVO dvo) {
-//		dvo.setI_reser(param.getI_reser());
+		TUserVO loginUser = (TUserVO)hs.getAttribute("loginUser");
+		param.getI_mlist();
+		param.getI_host();
+		param.getI_user();
+		param.getHost_num();
+		
+		
 		dvo.setI_host(param.getI_host());
 		dvo.setI_mlist(param.getI_mlist());
 		dvo.setI_user(param.getI_user());
@@ -108,9 +114,10 @@ public class MsgController {
 		param.setHost_num(2);
 		
 		service.insMsg(param);
+		
 		return "redirect:/aircnc/mdetail?i_mlist="+mvo2.getI_mlist()
 		+"&i_host="+mvo2.getI_host()+"&i_user="+mvo2.getI_user()
-		+"&host_num="+mvo2.getHost_num()/*+"&i_reser="+mvo2.getI_reser();*/;
+		+"&host_num="+mvo2.getHost_num();
 	}
 	
 	@RequestMapping(value="/delMsg", method=RequestMethod.GET)

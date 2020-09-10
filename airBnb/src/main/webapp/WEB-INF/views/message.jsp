@@ -30,7 +30,7 @@
         </div>
         <div id="menuctnt">
             <li class="b" onclick="goMsg()">메시지</li>
-            <li class="b">저장 목록</li>
+            <li class="b" onclick="goWish()">저장 목록</li>
             <div class="line">
                 ――――――――――――――――
             </div>
@@ -76,7 +76,6 @@
 	$(document).ready(function(){
 		<% 
 		TUserVO uservo = (TUserVO)session.getAttribute("loginUser");
-		
 		%>
 		
 		userVO = <%=uservo.getI_user() %>;
@@ -85,18 +84,18 @@
 
 	function detail(i_mlist,i_host,host_num,i_reser){
 
-		//현욱이가 바꿔야할 ID값
+		/* //현욱이가 바꿔야할 ID값
 		if (userVO != 0) {
-// 			var userVO = sessionStorage.getItem("loginUser");
 			i_user = userVO;
-		    alert('현재 i_user = '+i_user);
-			
+		    alert('현재 i_user = '+i_user); */
+			i_user = userVO
+		    
 			document.mdetail.location='/aircnc/mdetail?i_mlist='+i_mlist
 					+'&i_host='+i_host+'&i_user='+i_user
-					+'&host_num='+host_num+'&i_reser='+i_reser;
-		}else{
+					+'&host_num='+host_num;
+		/* }else{
 			document.location = '/aircnc';
-		}
+		} */
 	}
 
 	function goHost(i_user){
@@ -109,7 +108,7 @@
 	}
 	//메뉴-저장 목록으로 이동
 	function goWish() {
-		location.href = '/wishlists';
+		location.href = '/wish';
 	}
 	//dropDown 메뉴 함수 
 	function myMenu() {

@@ -27,7 +27,6 @@
 			<th>내용</th>
 			<th>시간</th>
 			<th>글쓴이</th>
-			<th>i_reser</th>
 			<th>i_mlist</th>
 		</tr>
 		<c:forEach var="item" items="${msgDetailList}">
@@ -41,7 +40,6 @@
 				<td>${item.cmt}</td>
 				<td>${item.m_dt}</td>
 				<td>${item.i_user}</td><!-- 여기서 i_user의 값이 나의 loginUser의 i_user값이 아닌경우 왼쪽 맞으면 오른쪽 -->
-				<td>${item.i_reser}</td>
 				<td>${item.i_mlist}</td>
 				<td>${item.host_num}</td>
 			</tr>

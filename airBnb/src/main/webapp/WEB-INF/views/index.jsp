@@ -118,7 +118,7 @@
 
 <nav id="core">
       <div>
-         <img id="logo" src="/resources/img/mainlogo.png">
+         <a href="/aircnc"><img id="logo" src="/resources/img/mainlogo.png"></a>
       </div>
       <div id="menu">
          <li class="menuli">숙소</li>

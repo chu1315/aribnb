@@ -232,7 +232,7 @@ function goMsg() {
 }
 //메뉴-저장 목록으로 이동
 function goWish() {
-	location.href = '/wishlists';
+	location.href = '/wish';
 }
 
 function goHST(){
