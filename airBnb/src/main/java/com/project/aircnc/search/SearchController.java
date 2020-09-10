@@ -47,18 +47,15 @@ public class SearchController {
 	public String searchDetail(int i_host, int i_user, HttpSession hs) {
 		TUserVO loginUser = (TUserVO)hs.getAttribute("loginUser");
 		
-		System.out.println("Detail i_host : " + i_host); // i_host를 이용해서 host_user에 있는 정보를 불러올것
-		// 그리고 i_host를 이용해서 host_pic에서도 사진을 다 불러올 것
-		System.out.println("Detail i_user : " + i_user); //글쓴이 이름 가져올 것
-		
-		TUserVO uvo = service.writer(i_user);
-		uvo.getE_mail();
-		uvo.getNm();
+//		System.out.println("Detail i_host : " + i_host); // i_host를 이용해서 host_user에 있는 정보를 불러올것
+//		그리고 i_host를 이용해서 host_pic에서도 사진을 다 불러올 것
+//		System.out.println("Detail i_user : " + i_user); //글쓴이 이름 가져올 것
 		
 		hs.setAttribute("detailData", service.detail(i_host)); // host_user테이블에 있는 정보 다 불러옴.
 		hs.setAttribute("writer", service.writer(i_user)); // t_user 테이블의 nm과 e_mail 가져온다
 		hs.setAttribute("hostPic", service.hostPic(i_host)); // host_pic 테이블의 사진을 다 불러올 것
 		hs.setAttribute("i_host", i_host);
+		
 		return "search/searchDetail";
 	}
 	

@@ -4,7 +4,6 @@ public class DtlMsgVO {
 	private int i_mlist;
 	private int host_num;
 	private int i_msg;
-	private int i_reser;
 	private int i_host;
 	private int i_user;
 	private String cmt;
@@ -30,12 +29,6 @@ public class DtlMsgVO {
 	}
 	public void setI_msg(int i_msg) {
 		this.i_msg = i_msg;
-	}
-	public int getI_reser() {
-		return i_reser;
-	}
-	public void setI_reser(int i_reser) {
-		this.i_reser = i_reser;
 	}
 	public int getI_host() {
 		return i_host;

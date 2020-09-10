@@ -26,7 +26,7 @@ public class HostService {
 	}
 	
 	public int insHostSaveOne(HostUserVO param) {
-		param.setAddr(param.getAddr()+param.getAddrDetail());
+		param.setAddr(param.getAddr()+" "+param.getAddrDetail());
 		return mapper.insHostSaveOne(param);
 	}
 	

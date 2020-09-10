@@ -1,7 +1,10 @@
 package com.project.aircnc.msg;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,46 +19,60 @@ public class MsgController {
 	
 	@Autowired
 	private MsgService service;
-	
+	// get에서 데이터를 받아서 톡방 바로 만들고 msg로 location 해주면 될 듯
 	@RequestMapping(value="/crtMsg", method=RequestMethod.GET)
-	public String crtMsg(HttpSession hs) {
+	public String crtMsg(HttpSession hs, int i_host, String room_title,int i_user, HttpServletResponse response) {
 		
-		TUserVO uservo = new TUserVO(); 
-		uservo.setI_user(1);
-		uservo.setNm("현욱간지");
-		uservo.setE_mail("111");
-		hs.setAttribute("loginUser",uservo);
+		TUserVO loginUser = (TUserVO)hs.getAttribute("loginUser");
+		if(loginUser == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			 
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				
+				out.println("<script>alert('로그인 후 접근해주세요.');</script>");
+				 
+				out.flush();
+				return "/index";
+			} catch (IOException e) {
+				System.out.println("/crtMsg() GET방식  오류 : "+e);
+			}
+		}
+//		System.out.println("i_user : " + i_user); // 글 쓴 사람의 user번호
+//		System.out.println("room_title : " + room_title); // 방 이름
+//		System.out.println("i_host : " + i_host); // 방의 pk번호 
 		
-		return "msgcreate";
-	}
-	
-	@RequestMapping(value="/crtMsg", method=RequestMethod.POST)
-	public String crtMsg(MsgVO param) {
-//		System.out.println(param.getHost_num());
-//		System.out.println(param.getI_reser());
-//		System.out.println(param.getI_host());
-//		System.out.println(param.getI_user());
-//		System.out.println(param.getMs_title());
 		
-		service.crtMsg(param);
+		service.crtMsg(i_user, room_title, i_host, loginUser.getI_user());
 		
 		return "redirect:/aircnc/message";
 	}
 	
+	
 	@RequestMapping(value="/message", method=RequestMethod.GET)
-	public String message(MsgVO param, HttpSession hs) {
-//		세션에서 꺼내와서 밑에 i_user 세팅
+	public String message(MsgVO param, HttpSession hs, HttpServletResponse response) {
+		
+		TUserVO loginUser = (TUserVO)hs.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			 
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				
+				out.println("<script>alert('로그인 후 접근해주세요.');</script>");
+				 
+				out.flush();
+				return "/index";
+			} catch (IOException e) {
+				System.out.println("/message() GET방식  오류 : "+e);
+			}
+		}
 		
 		
-		//현욱이가 바꿔야할 ID값 // 지우기
-		TUserVO uservo = new TUserVO(); 
-		uservo.setI_user(2);
-		uservo.setNm("현욱간지");
-		uservo.setE_mail("111");
-		hs.setAttribute("loginUser",uservo);
-		
-		
-		param.setI_user(2); // 임시용(hs에 들어가있는 로그인유저의 i_user를 받아넣을것이다)
+		param.setI_user(loginUser.getI_user()); // 임시용(hs에 들어가있는 로그인유저의 i_user를 받아넣을것이다)
 		
 		hs.setAttribute("msgList", service.msgList(param));
 		
@@ -64,7 +81,7 @@ public class MsgController {
 	
 	@RequestMapping(value="/mdetail", method=RequestMethod.GET)
 	public String mdetail(HttpSession hs, MsgVO param, DtlMsgVO dvo) {
-		dvo.setI_reser(param.getI_reser());
+//		dvo.setI_reser(param.getI_reser());
 		dvo.setI_host(param.getI_host());
 		dvo.setI_mlist(param.getI_mlist());
 		dvo.setI_user(param.getI_user());
@@ -87,13 +104,13 @@ public class MsgController {
 		param.setI_host(mvo2.getI_host());
 		param.setI_mlist(mvo2.getI_mlist());
 		param.setI_user(mvo2.getI_user()); // loginUser에서 i_user 가져오기
-		param.setI_reser(mvo2.getI_reser());
+//		param.setI_reser(mvo2.getI_reser());
 		param.setHost_num(2);
 		
 		service.insMsg(param);
 		return "redirect:/aircnc/mdetail?i_mlist="+mvo2.getI_mlist()
 		+"&i_host="+mvo2.getI_host()+"&i_user="+mvo2.getI_user()
-		+"&host_num="+mvo2.getHost_num()+"&i_reser="+mvo2.getI_reser();
+		+"&host_num="+mvo2.getHost_num()/*+"&i_reser="+mvo2.getI_reser();*/;
 	}
 	
 	@RequestMapping(value="/delMsg", method=RequestMethod.GET)

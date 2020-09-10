@@ -1,3 +1,9 @@
+html body{
+	margin: 0;
+	padding: 0;
+	height:100%;
+	width: 100%;
+}
 header {
     height: 80px;
     border-bottom: 1px solid lightgrey;
@@ -73,9 +79,60 @@ header #menuctnt .line {
 
 #detailContainer{
 	padding:60px;
+	padding:10px;
 }
 
 #picContainer > #srcImg{
 	width:400px;
 	height:400px;
 }
+
+.line {
+    color: #e5e5e5;
+}
+hr{
+	border:1px solid;
+	color: #e5e5e5;
+}
+#flexContainer {
+	display:flex;
+	padding:10px;
+}
+
+#detailDes {
+	display:flex;
+	flex-direction:column;
+	flex-grow:1;
+	width:400px;
+}
+
+#msgContainer {
+	display:flex;
+	flex-direction:column;
+	padding:15px;
+	flex-grow:1;
+}
+
+#msgContainer > #msgAli {
+	display:flex;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  height:70px;
+  width:200px;
+  border-radius: 10px / 10px;
+}
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger.focus,
+.btn-danger:active,
+.btn-danger.active,
+.open > .dropdown-toggle.btn-danger {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+

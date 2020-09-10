@@ -20,7 +20,7 @@
 <container id="container">
 	<header>
 		<div>
-			<img id="logo" onclick="goIndex()" src="/resources/img/pinklogo.png">
+			<a href="/aircnc"><img id="logo" onclick="goIndex()" src="/resources/img/pinklogo.png"></a>
 		</div>
         <div id="menubutton" onclick="myMenu()">
             <div><img id="ham" src="/resources/img/bars-solid.svg"></div>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div id="menuctnt">
-            <li class="b">메시지</li>
+            <li class="b" onclick="goMsg()">메시지</li>
             <li class="b">저장 목록</li>
             <div class="line">
                 ――――――――――――――――
@@ -54,7 +54,7 @@
 					<!-- <th>작성시간</th> -->
 				</tr>
 				<c:forEach var="item" items="${msgList}">
-					<tr onclick="detail(${item.i_mlist},${item.i_host},${item.host_num},${item.i_reser })">
+					<tr onclick="detail(${item.i_mlist},${item.i_host},${item.host_num})">
 						<td>${item.i_mlist}</td>
 						<td>${item.ms_title}</td>
 						<%-- <td>${item.r_dt}</td> --%>
@@ -98,12 +98,28 @@
 			document.location = '/aircnc';
 		}
 	}
-	
-	
-	
 
+	function goHost(i_user){
+		location.href='/host/hostSave';
+	}
 
-
+	//메시지 화면 이동
+	function goMsg() {
+		location.href = '/aircnc/message';
+	}
+	//메뉴-저장 목록으로 이동
+	function goWish() {
+		location.href = '/wishlists';
+	}
+	//dropDown 메뉴 함수 
+	function myMenu() {
+		display = document.getElementById("menuctnt").style.display;
+		if(display == 'block'){
+			document.getElementById("menuctnt").style.display='none';
+		}else{
+			document.getElementById("menuctnt").style.display='block';
+		}
+	}
 
 </script>
 	

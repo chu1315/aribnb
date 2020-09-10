@@ -11,8 +11,15 @@ public class MsgService {
 	@Autowired
 	private MsgMapper mapper;
 	
-	public int crtMsg(MsgVO param) {
-		return mapper.crtMsg(param);
+	public int crtMsg(int i_user, String room_title,int i_host, int loginUser_i_user) {
+		
+		MsgVO mvo = new MsgVO();
+		mvo.setHost_num(i_user);
+		mvo.setMs_title(room_title);
+		mvo.setI_host(i_host);
+		mvo.setI_user(loginUser_i_user);
+		
+		return mapper.crtMsg(mvo);
 	}
 	
 	public List<MsgVO> msgList(MsgVO param) {

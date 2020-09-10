@@ -3,12 +3,10 @@ package com.project.aircnc.msg;
 public class MsgVO {
 	private int i_mlist;
 	private int host_num;
-	private int i_reser;
 	private int i_host;
 	private int i_user;
 	private String ms_title;
 	private String r_dt;
-	private String m_dt;
 	
 	
 	public int getHost_num() {
@@ -22,12 +20,6 @@ public class MsgVO {
 	}
 	public void setI_mlist(int i_mlist) {
 		this.i_mlist = i_mlist;
-	}
-	public int getI_reser() {
-		return i_reser;
-	}
-	public void setI_reser(int i_reser) {
-		this.i_reser = i_reser;
 	}
 	public int getI_host() {
 		return i_host;
@@ -52,12 +44,6 @@ public class MsgVO {
 	}
 	public void setR_dt(String r_dt) {
 		this.r_dt = r_dt;
-	}
-	public String getM_dt() {
-		return m_dt;
-	}
-	public void setM_dt(String m_dt) {
-		this.m_dt = m_dt;
 	}
 	
 	
