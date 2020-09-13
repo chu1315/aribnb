@@ -15,4 +15,8 @@ public interface SearchMapper {
 	public HostUserVO detail(int i_host);
 	public TUserVO writer(int i_user);
 	public List<HostPicVO> hostPic(int i_host);
+	//삭제기능
+	public void searchDelete(int i_host);
+	public void thumDelete(int i_host);
+	public void picDelete(int i_host);
 }

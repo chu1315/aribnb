@@ -35,6 +35,11 @@ public class SearchSevice {
 		return list;
 	}
 	
+	public void delete(int i_host) {
+		mapper.searchDelete(i_host);//집정보 지우기
+		mapper.thumDelete(i_host);// 썸네일 사진 지우기
+		mapper.picDelete(i_host);// 사진지우기
+	}
 	
 	
 

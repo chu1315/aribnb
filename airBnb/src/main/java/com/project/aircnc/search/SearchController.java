@@ -1,5 +1,7 @@
 package com.project.aircnc.search;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +41,7 @@ public class SearchController {
 		
 		System.out.println("addr : " + addr);
 		hs.setAttribute("data", service.searchList(addr));
-		
+		hs.setAttribute("addr", addr);
 		return "search/searchMain";
 	}
 	
@@ -57,6 +59,18 @@ public class SearchController {
 		hs.setAttribute("i_host", i_host);
 		
 		return "search/searchDetail";
+	}
+	
+	@RequestMapping(value="/search/searchDelete", method=RequestMethod.GET)
+	public String searchDelete(HttpSession hs, int i_host) throws UnsupportedEncodingException {
+		String addr = (String)hs.getAttribute("addr");
+		System.out.println("searchDelete i_host : " + i_host);
+		System.out.println("searchDelete addr : " + addr );
+		service.delete(i_host);
+		String encodedParam = URLEncoder.encode(addr, "UTF-8");
+		
+		
+		return "redirect:/search/searchMain?addr="+encodedParam;
 	}
 	
 

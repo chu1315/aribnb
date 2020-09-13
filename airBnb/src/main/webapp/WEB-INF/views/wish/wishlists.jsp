@@ -63,6 +63,11 @@
 						<td><img id="srcImg" src='/resources/img/thum/${item.pic_nm}'></td>
 						<td id="tds">${item.room_title}</td>
 						<td id="tds">${item.r_dt}</td>
+						<td>
+							<c:if test="${loginUser.i_user != null}">
+								<a href="/wish/wishDelete?i_host=${item.i_host}"><input type="button" value="찜삭제"></a>
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

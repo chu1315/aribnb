@@ -82,6 +82,11 @@ height:130px;
 						<td><img id="srcImg" src='/resources/img/thum/${item.pic_nm}'></td>
 						<td id="tds">${item.room_title}</td>
 						<td id="tds">${item.r_dt}</td>
+						<td>
+							<c:if test="${item.i_user == loginUser.i_user}">
+								<a href="/search/searchDelete?i_host=${item.i_host}"><input type="button" value="글삭제"></a>
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

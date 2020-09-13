@@ -29,4 +29,19 @@
 		WHERE i_host = #{i_host}
 	</select>
 	
+	<delete id="searchDelete" parameterType="int">
+		DELETE FROM host_user
+		WHERE i_host = ${i_host}
+	</delete>
+	
+	<delete id="thumDelete" parameterType="int">
+		DELETE FROM thum_pic
+		WHERE i_host = ${i_host}
+	</delete>
+	
+	<delete id="picDelete" parameterType="int">
+		DELETE FROM host_pic
+		WHERE i_host = ${i_host}
+	</delete>
+	
 </mapper>
