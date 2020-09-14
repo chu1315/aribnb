@@ -83,7 +83,7 @@ header #menuctnt .line {
 }
 
 #picContainer > #srcImg{
-	width:400px;
+	width:600px;
 	height:400px;
 }
 
@@ -103,7 +103,7 @@ hr{
 	display:flex;
 	flex-direction:column;
 	flex-grow:1;
-	width:400px;
+	padding:15px;
 }
 
 #msgContainer {
@@ -136,3 +136,24 @@ hr{
   border-color: #ac2925;
 }
 
+#date {
+	display: flex;
+    flex-direction: column;
+    justify-content: left;
+    height: 40px;
+    width: 850px;
+    border-radius: 40px;
+    list-style: none;
+    background-color: white;
+    padding: 12px;
+    align-items: flex-start;
+    height:100px;
+}
+#date .sli {
+    flex-grow: 1;
+    float: left;
+    padding-left: 35px;
+}
+#btnInput {
+	display:flex;
+}

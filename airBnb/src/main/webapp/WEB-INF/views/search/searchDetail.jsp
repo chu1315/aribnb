@@ -6,8 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="/resources/img/pinklogo.ico">
 <link rel="stylesheet" href="/resources/css/searchDetail.css">
-<title></title>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://kit.fontawesome.com/ea36f2192f.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<title>Detail</title>
 </head>
 <body>
 	<container id="container">
@@ -46,7 +54,7 @@
 			src='/resources/img/host/${i_host}/${item.pic_nm}'>
 		</c:forEach>
 	</div>
-
+</div>
 <div id="flexContainer">
 	<div id="detailDes">
 		<div>
@@ -64,25 +72,87 @@
 		<form action="/wish" method="post" onclick="alt()">
 			<input type="hidden" value="${i_host}">
 			<input type="hidden" value="${detailData.i_user}">
-			<button type="submit">저장목록에 저장하기</button>
+			<input type="button" class="btn-danger" value="저장목록에 저장하기">
 		</form>
 		
 	</div>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<hr>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<div id="msgContainer">
 		<h2>호스트에게 더 궁금하신 사항이 있으신가요?</h2>
 		<h4>아래 버튼을 누르시면 호스트에게 메시지를 보낼 수 있게되고<br> 페이지가 이동합니다.</h4>
-		<div class="line">――――――――――――――――――――――――――――――</div>
 		<div id="msgAli">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="button" class="btn-danger" value="호스트에게 메세지 보내기" onclick="crtMsg(${i_host}, '${detailData.room_title}', ${detailData.i_user})">
 		</div>
+		<div class="line">――――――――――――――――――――――――――――――</div>
+		<h2>체크인/체크아웃 날짜를 설정해주세요</h2>
+		<div id="date">
+			<div>
+				<li class="sli"><label>체크인
+					<div>
+						<input id="searchin" class="searchin" type="text" value=""
+						placeholder="날짜 추가" readonly="readonly">
+					</div>
+				</label></li>
+				<li class="sli"><label>체크아웃
+					<div>
+						<input id="searchout" class="searchin" type="text" value=""
+						placeholder="날짜 추가" readonly="readonly">
+					</div>
+				</label></li>
+			</div>
+		</div>
+		<div id="btnInput">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn-danger" value="예약하기">	
+		</div>
 	</div>
-</div>	
 	
 </div>	
 	
 <script>
+//달력 
+$(function() {
+ //체크인 눌렀을때  달력 출력 
+  $('input[id="searchin"]').daterangepicker({
+      autoUpdateInput: false,
+      locale: {
+          cancelLabel: 'Clear'
+      }
+  });
+// apply 누른 순간 input value에 날짜 값 삽입 
+  $('input[id="searchin"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('YYYY-MM-DD'));
+	  $('input[id="searchout"]').val(picker.endDate.format('YYYY-MM-DD'));
+  });
+//  Clear 눌렀을때 삽입된 값 비우기 
+  $('input[id="searchin"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+	  $('input[id="searchout"]').val('');
+  });
+ //체크아웃 눌렀을때  달력 출력 
+  $('input[id="searchout"]').daterangepicker({
+      autoUpdateInput: false,
+      locale: {
+          cancelLabel: 'Clear'
+      }
+  });
+// apply 누른 순간 input value에 날짜 값 삽입 
+  $('input[id="searchout"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.endDate.format('YYYY-MM-DD')); 
+	  $('input[id="searchin"]').val(picker.startDate.format('YYYY-MM-DD'));
+  });
+//  Clear 눌렀을때 삽입된 값 비우기 
+  $('input[id="searchout"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+	  $('input[id="searchin"]').val('');
+  });
+
+}); // function(){} 끝
+
+
 var userVO ;
 function alt() {
 	<% 
@@ -128,6 +198,8 @@ function myMenu() {
 		document.getElementById("menuctnt").style.display='block';
 	}
 }
+
+
 </script>
 </body>
 </html>
