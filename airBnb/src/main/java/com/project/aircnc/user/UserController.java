@@ -27,10 +27,9 @@ public class UserController {
 	public String login (Model model, TUserVO param ,HttpSession hs, HttpServletResponse response) {
 		int result = service.login(param,hs);
 		
-		if (result ==1) {
+		if (result == 1) {
 			return "redirect:/aircnc";
 		} else {
-//			model.addAttribute("msg", "아이디 혹은 비밀번호를 확인해주세요.");
 			response.setContentType("text/html; charset=UTF-8");
 			 
 			PrintWriter out;
@@ -42,7 +41,6 @@ public class UserController {
 				out.flush();
 				return "/index";
 			} catch (IOException e) {
-//				e.printStackTrace();
 				System.out.println("/login() 오류 : "+e);
 			}
 			 

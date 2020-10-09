@@ -48,7 +48,8 @@
 				<h5>휴대전화나 카메라를 사용하여 사진을 찍으세요.<br>
 					숙소를 등록하려면 1장 이상의 사진이 필요합니다.<br> 
 					사진을 첨부하시는 순간 바로 등록됩니다.<br>
-					그 점에 주의하시고 올려주세요</h5>
+					그 점에 주의하시고 올려주세요<br>
+					사진 업로드가 완료되시면 바로 등록이 됩니다.</h5>
 			</div>
 			<br>
 		<!-- 리스트에 뿌려질 썸네일 이미지 -->
@@ -83,133 +84,15 @@
 		<script>
 
 		
-// 			$(document).ready(function(){
 			$(document).on(function(){
 
 				
 				var Dropzone = $('div#myDrop').Dropzone({
-// 					url : 'http://localhost:8090/upload'
-// 					,
-// 					method : "post",
-// 					params : {
-// 						i_user : $("#i_user").val() ,name : name
-// 					},
-// 					success: function (file, response) {
-// 		                console.log(response);
-// 		            }
 				});
 				
 
 				Dropzone.autoDiscover = false;
 				Dropzone.options.myAwesomeDropzone = false;
-// 				$(".file-dropzone").on('dragover', handleDragEnter); 
-// 				$(".file-dropzone").on('dragleave', handleDragLeave); 
-// 				$(".file-dropzone").on('drop', handleDragLeave); 
-// 				function handleDragEnter(e) { this.classList.add('drag-over'); } 
-// 				function handleDragLeave(e) { this.classList.remove('drag-over'); }
-
-// 				Dropzone.autoDiscover = false;
-				
-// // 				var Dropzone = new Dropzone("div#myDrop", { url: "/upload"});
-// 				var Dropzone = $('div#myDrop').Dropzone({
-// 				    url: 'http://localhost:8090/upload',
-// 				    method: "post",
-// 				    autoProcessQueue: false, //자동으로 보내기 방지
-// 				    paramName: 'files',
-// 				    parallelUploads: 99,
-// 				    maxFilesize: 10, // MB
-// 				    uploadMultiple: true,
-// 				    headers: {
-// 				        "Authorization": 'Bearer ' + token //localstorage에 저장된 token
-// 				    },
-// 				    init: function() {
-// 				        var myDropzone = this;
-// 				        this.on("sending", function(file, xhr, formData) {
-// 				            let cardName = $("input[name='cardname']").val();
-// 				            formData.append("name", cardName);
-// 				        });
-
-// 				        this.on("queuecomplete", function(file) {
-// 				            document.location.href = "./index" //업로드가 완료되었다면 이전 화면으로 이동
-// 				        });
-// 				        this.on("addedfile", function(file) { //중복된 파일의 제거 
-// 				            if (this.files.length) {
-// 				                // -1 to exclude current file
-// 				                var hasFile = false;
-// 				                for (var i = 0; i < this.files.length - 1; i++) {
-// 				                    if (this.files[i].name === file.name && this.files[i].size === file.size &&
-// 				                        this.files[i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
-// 				                        hasFile = true;
-// 				                        this.removeFile(file);
-// 				                    }
-// 				                }
-// 				                if (!hasFile) {
-// 				                    addedFiles.push(file);
-// 				                }
-// 				            } else {
-// 				                addedFiles.push(file);
-// 				            }
-// 				        });
-
-				      
-// 				        $('#myDrop').click(function(e) {
-// 				            let cardName = $("input[name='cardname']").val();
-// 				            if (cardName.length == 0) {
-// 				                alert('카드제목 입력 필요')
-// 				                return;
-// 				            }
-// 				            if (myDropzone.getRejectedFiles().length > 0) {
-// 				                let files = myDropzone.getRejectedFiles();
-// 				                alert('거부된 파일이 있습니다.', files)
-// 				                return;
-// 				            }
-
-// 				            e.preventDefault();
-// 				            e.stopPropagation();
-
-// 				            myDropzone.processQueue();
-// 				        })
-// 				    }
-// 				});
-				
-// 				Dropzone.options.myAwesomeDropzone = {
-// 						paramName: "file", 
-// 						maxFilesize: 20, 
-// 						maxFiles: 3,
-// 						createImageThumbnails : true,
-// 			            addRemoveLinks : true,
-// 						method:'post',
-// 						autoQueue: false,
-// 						accept: function(file, done) {
-// 							if (file.name == ""){
-// 								done();				
-// 							}else { done(); }
-// 						},
-// 			            init : function() {
-// 			                // 최대를 넘겼을 때 event
-// 			                this.on("maxfilesexceeded", function(file) {
-// 			                    alert("최대 3개의 파일만 업로드 가능합니다.");
-// 			                });
-// 			                // 파일을 삭제할 때 event
-// 			                this.on("removedfile", function(file) {
-// 			                    if(file.status !== "error") {
-// 			                        var fileElParent = $(this.element);
-// 			                        var srvFile = $("#srvFile").val();
-// 			                        $.ajax({
-// 			                            url : "./delete.do",
-// 			                            type : "POST",
-// 			                            data : {
-// 			                                fileName : srvFile
-// 			                            },
-// 			                            success : function(res) {
-// 			                                $("#usrFile").remove();
-// 			                                $("#srvFile").remove();
-// 			                            }
-// 			                        });
-// 			                    }
-// 			                });
-// 			            }
-// 					};
 				
 			});
 		</script>

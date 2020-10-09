@@ -4,7 +4,8 @@
 	
 	
 	<select id="searchListTwo" parameterType="String" resultType="HostUserVO">
-		SELECT a.i_user, a.i_host, a.room_title, DATE_FORMAT(a.r_dt, '%y-%m-%d %H:%i') as r_dt, b.pic_nm, a.ADDR
+		SELECT a.i_user, a.i_host, a.room_title, DATE_FORMAT(a.r_dt, '%y-%m-%d %H:%i') as r_dt,
+		 b.pic_nm, a.ADDR
 		FROM host_user a INNER JOIN thum_pic b
 		ON a.i_host = b.i_host
 		WHERE addr LIKE '%${addr}%'
