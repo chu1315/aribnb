@@ -34,9 +34,6 @@ public class HostService {
 	public void upload(MultipartFile file, HttpSession hs, int i_host) {
 		TUserVO loginUser = (TUserVO)hs.getAttribute("loginUser");		
 				
-		
-//		String realPath = hs.getServletContext().getRealPath("/"); //루트 절대경로 가져오기
-//		String imgFolder = realPath + "/resources/img/host/" + i_host;
 		String imgFolder = "C:/Users/현욱/git/aribnb/airBnb/src/main/webapp/resources/img/host/"+i_host;
 		String pic_nm = MyUtils.saveFile(imgFolder, file);
 		
@@ -47,8 +44,6 @@ public class HostService {
 	
 	public void thumUpload(MultipartFile file, HttpSession hs, int i_user, int i_host) {
 		
-//		String realPath = hs.getServletContext().getRealPath("/"); //루트 절대경로 가져오기 web-app까지의 경로
-//		String imgFolder = realPath + "/resources/img/thum/";
 		String imgFolder = "C:/Users/현욱/git/aribnb/airBnb/src/main/webapp/resources/img/thum/";
 		String pic_nm = MyUtils.saveFile(imgFolder, file);
 		

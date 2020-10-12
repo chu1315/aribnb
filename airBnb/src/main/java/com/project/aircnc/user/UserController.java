@@ -51,16 +51,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String join (Model model, TUserVO param) {
-		int result= 0;
-		result = service.join(param);
-		
-		if (result==1) {
-			return "redirect:/aircnc";
-		} else {
-			model.addAttribute("msg", "회원가입 실패");
-			return "redirect:/aircnc";
-		}
+	public void join (Model model, TUserVO param) {
+		service.join(param);
 	}
 	
 	@ResponseBody
@@ -68,9 +60,9 @@ public class UserController {
 	public Map<String, Object> chkeckE_mail(@RequestParam("e_mail")String e_mail, Model model){
 		System.out.println("email : " + e_mail); // 여긴 들어온다.
 		Map<String, Object> map = new HashMap();
-		map.put("result", service.chkE_mail(e_mail));
 		int result = service.chkE_mail(e_mail);
-		System.out.println("result:"+result);
+		map.put("result", result);
+		System.out.println("result:"+result); // 확인용
 		System.out.println("돌아옴");
 		
 		

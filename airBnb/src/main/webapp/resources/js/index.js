@@ -214,21 +214,39 @@ function defaultCheckE_mailValue(){
 	}
 		
 
+
 function chk(){
-	if(joinForm.e_mail.value.length == 0) {
-		alert('이메일을 입력해주세요');
-		return false;
-	}else if(joinForm.nm.value.length == 0){
-		alert('이름을 입력해주세요');
-		return false;
-	}else if(joinForm.c_pw.value.length == 0) {
-		alert('비밀번호를 입력해주세요');
-		return false;
-	}else if(joinForm.bir_day.value.length == 0){
-		alert('생년월일을 입력해주세요');
+	if($('#checkE_mail').val() != 0){
+		alert('이메일 체크를 해주세요!!');
 		return false;
 	}
+	var chk = ['nm', 'c_pw', 'bir_day'];
+	for(var i=0; i<chk.length; i++){
+		if($('#'+chk[i]).val() == ''){
+			alert($('#'+chk[i]).attr('placeholder') + '을 입력해주세요 !');
+			return false;
+		}
+	}
+	$.ajax({
+		type:"POST",
+		url:"/join",
+		data:{e_mail:$('#bubu').val(), nm:$('#nm').val(), 
+			  c_pw:$('#c_pw').val(), bir_day:$('#bir_day').val()},
+		success:function(data){
+			alert('회원가입이 완료되셨습니다.');
+			// attr = 속성 attribue 
+			// $('#id').attr("src") => id의 src의 값을 가져옴
+			// $('#id').attr("src","/css/boot.css") => id의 src를 저걸로 바꿈
+			$('#menuctnt').css("display", "none"); // css를 사용해서 display : none 만들기
+			$('#join').attr("style", "display:none"); // attr를 사용해서 display : none 만들기
+			window.location.reload(); // 새로고침해서 지워주기
+		},
+		error: function(xhr, status, error) {
+            alert(error);
+		}
+	});
 }
+
 
 //			Map = key : value 
 //			ModelAndView = "key" : value <- 이게 정석인데
