@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.aircnc.common.GestSpaceVO;
 import com.project.aircnc.common.HostUserVO;
-import com.project.aircnc.common.SafePlantVO;
-import com.project.aircnc.common.SpaceInfoVO;
 import com.project.aircnc.common.TUserVO;
 
 @Controller

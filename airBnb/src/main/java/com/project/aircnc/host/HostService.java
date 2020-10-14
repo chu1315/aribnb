@@ -7,12 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.aircnc.common.GestSpaceVO;
 import com.project.aircnc.common.HostPicVO;
 import com.project.aircnc.common.HostUserVO;
 import com.project.aircnc.common.MyUtils;
-import com.project.aircnc.common.SafePlantVO;
-import com.project.aircnc.common.SpaceInfoVO;
 import com.project.aircnc.common.TUserVO;
 
 @Service
